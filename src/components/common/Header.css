@@ -1,0 +1,9 @@
+.active-link {
+  font-weight: bold;
+  color: #0d6efd !important;
+}
+
+.nav-link:hover {
+  color: #0d6efd !important;
+  transition: color 0.2s ease-in-out;
+}
