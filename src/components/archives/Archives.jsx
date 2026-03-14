@@ -1,39 +1,77 @@
-import React, { useState } from 'react';
-import { Dropdown, Card, ListGroup } from 'react-bootstrap';
+import React, { useState, useEffect } from 'react';
+import { Dropdown, Card, ListGroup, Accordion, Button } from 'react-bootstrap';
+import { getRootTree } from '../../googleDrive';
 
 const Archives = () => {
-  const currentYear = new Date().getFullYear();
-  const [selectedYear, setSelectedYear] = useState(currentYear);
+  const [tree, setTree] = useState([]);
+  const [selectedYear, setSelectedYear] = useState('');
+  const [loading, setLoading] = useState(true);
+  const [error, setError] = useState(null);
 
-  const fiscalYears = Array.from({ length: 5 }, (_, i) => currentYear - i);
+  useEffect(() => {
+    const fetchTree = async () => {
+      try {
+        const rootTree = await getRootTree();
+        setTree(rootTree);
+        if (rootTree.length > 0) {
+          setSelectedYear(rootTree[0].name); // Default to first year
+        }
+      } catch (err) {
+        setError('Failed to load archives');
+        console.error(err);
+      } finally {
+        setLoading(false);
+      }
+    };
+    fetchTree();
+  }, []);
+
+  const selectedYearData = tree.find(year => year.name === selectedYear);
+
+  if (loading) return <div>Loading...</div>;
+  if (error) return <div>{error}</div>;
 
   return (
     <Card className="shadow-sm">
-      <Card.Header as="h2" className="text-center">Document Archives</Card.Header>
+      <Card.Header as="h2" className="text-center">Thesis Repository</Card.Header>
       <Card.Body>
         <div className="d-flex justify-content-center mb-4">
           <Dropdown>
             <Dropdown.Toggle variant="secondary" id="dropdown-basic" size="lg">
-              Fiscal Year: {selectedYear}
+              Year: {selectedYear}
             </Dropdown.Toggle>
-
             <Dropdown.Menu>
-              {fiscalYears.map((year) => (
-                <Dropdown.Item key={year} onClick={() => setSelectedYear(year)}>
-                  {year}
+              {tree.map((year) => (
+                <Dropdown.Item key={year.id} onClick={() => setSelectedYear(year.name)}>
+                  {year.name}
                 </Dropdown.Item>
               ))}
             </Dropdown.Menu>
           </Dropdown>
         </div>
         
-        <Card.Title className="text-center">Displaying archives for {selectedYear}</Card.Title>
-        <ListGroup variant="flush" className="mt-3">
-          <ListGroup.Item>Annual Report - {selectedYear}.pdf</ListGroup.Item>
-          <ListGroup.Item>Financial Statement - {selectedYear}.xlsx</ListGroup.Item>
-          <ListGroup.Item>Q4 Research Summary - {selectedYear}.docx</ListGroup.Item>
-          <ListGroup.Item>Extension Activity Report - {selectedYear}.pdf</ListGroup.Item>
-        </ListGroup>
+        {selectedYearData && (
+          <Accordion>
+            {selectedYearData.children.map((course) => (
+              <Accordion.Item key={course.id} eventKey={course.id}>
+                <Accordion.Header>{course.name}</Accordion.Header>
+                <Accordion.Body>
+                  <ListGroup variant="flush">
+                    {course.children.map((file) => (
+                      <ListGroup.Item key={file.id} className="d-flex justify-content-between align-items-center">
+                        {file.name}
+                        <div>
+                          <Button variant="outline-primary" size="sm" href={file.webViewLink} target="_blank">View</Button>
+                          <Button variant="outline-success" size="sm" href={file.webContentLink} download>Download</Button>
+                        </div>
+                      </ListGroup.Item>
+                    ))}
+                  </ListGroup>
+                </Accordion.Body>
+              </Accordion.Item>
+            ))}
+          </Accordion>
+        )}
       </Card.Body>
     </Card>
   );

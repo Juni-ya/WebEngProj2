@@ -1,107 +1,69 @@
-/* global gapi */
-import { Buffer } from 'buffer';
+const API_KEY = 'AIzaSyDxRiYwJW5NvWM06T0sFG-qOLpXmbZT6GM';
+const ROOT_FOLDER_ID = '1FxpX1ExBAEEJcPYwwUe7oHw9i_Lu1Om2'; // The shared folder ID
 
-const API_KEY = 'YOUR_API_KEY';
-const CLIENT_ID = 'YOUR_CLIENT_ID';
-const DISCOVERY_DOCS = ['https://www.googleapis.com/discovery/v1/apis/drive/v3/rest'];
-const SCOPES = 'https://www.googleapis.com/auth/drive.readonly';
-
-let tokenClient;
-let gapiInited = false;
-let gisInited = false;
-
-// Initialize the Google API client
+// Initialize the Google API client (optional, for consistency)
 function gapiInit() {
   gapi.client
     .init({
       apiKey: API_KEY,
-      discoveryDocs: DISCOVERY_DOCS,
+      discoveryDocs: ['https://www.googleapis.com/discovery/v1/apis/drive/v3/rest'],
     })
     .then(() => {
-      gapiInited = true;
+      console.log('GAPI initialized');
     });
 }
 
-// Initialize the Google Identity Services client
-function gisInit() {
-  tokenClient = google.accounts.oauth2.initTokenClient({
-    client_id: CLIENT_ID,
-    scope: SCOPES,
-    callback: '', // defined later
-  });
-  gisInited = true;
-}
-
-// Entry point for Google API initialization
+// Entry point for Google API initialization (optional)
 export function handleClientLoad() {
-  // Load the GAPI client and GIS library
-  const scriptGapi = document.createElement('script');
-  scriptGapi.src = 'https://apis.google.com/js/api.js';
-  scriptGapi.onload = () => {
+  const script = document.createElement('script');
+  script.src = 'https://apis.google.com/js/api.js';
+  script.onload = () => {
     gapi.load('client', gapiInit);
   };
-  document.body.appendChild(scriptGapi);
-
-  const scriptGis = document.createElement('script');
-  scriptGis.src = 'https://accounts.google.com/gsi/client';
-  scriptGis.onload = () => {
-    gisInit();
-  };
-  document.body.appendChild(scriptGis);
+  document.body.appendChild(script);
 }
 
-// Sign in the user
-export function handleAuthClick() {
-  return new Promise((resolve, reject) => {
-    if (!gapiInited || !gisInited) {
-      reject('Google API clients are not initialized.');
-      return;
-    }
-
-    tokenClient.callback = async (resp) => {
-      if (resp.error) {
-        reject(resp.error);
-        return;
-      }
-      await gapi.client.setToken(resp);
-      resolve();
-    };
-
-    if (gapi.client.getToken() === null) {
-      // Prompt the user to select a Google Account and ask for consent to share their data
-      // when establishing a new session.
-      tokenClient.requestAccessToken({ prompt: 'consent' });
-    } else {
-      // Skip display of account chooser and consent dialog for an existing session.
-      tokenClient.requestAccessToken({ prompt: '' });
-    }
-  });
-}
-
-// Sign out the user
-export function handleSignoutClick() {
-  const token = gapi.client.getToken();
-  if (token) {
-    google.accounts.oauth2.revoke(token.access_token, () => {
-      gapi.client.setToken(null);
-    });
-  }
-}
-
-// List files from a specific folder
+// List files from a specific folder using fetch for public access
 export async function listFiles(folderId) {
-  if (!gapiInited) {
-    throw new Error('Google API client is not initialized.');
+  const url = `https://www.googleapis.com/drive/v3/files?q='${folderId}' in parents&key=${API_KEY}&fields=files(id,name,mimeType,webViewLink,webContentLink,thumbnailLink)`;
+  const response = await fetch(url);
+  if (!response.ok) {
+    throw new Error('Failed to fetch files');
+  }
+  const data = await response.json();
+  return data.files;
+}
+
+// Recursive function to build folder tree
+export async function buildFolderTree(folderId, depth = 0) {
+  const items = await listFiles(folderId);
+  const tree = [];
+
+  for (const item of items) {
+    if (item.mimeType === 'application/vnd.google-apps.folder') {
+      const children = depth < 2 ? await buildFolderTree(item.id, depth + 1) : []; // Limit depth to Year -> Course -> Files
+      tree.push({
+        id: item.id,
+        name: item.name,
+        type: 'folder',
+        children,
+      });
+    } else {
+      tree.push({
+        id: item.id,
+        name: item.name,
+        type: 'file',
+        webViewLink: item.webViewLink,
+        webContentLink: item.webContentLink,
+        thumbnailLink: item.thumbnailLink,
+      });
+    }
   }
 
-  try {
-    const response = await gapi.client.drive.files.list({
-      q: `'${folderId}' in parents`,
-      fields: 'files(id, name, mimeType, webViewLink, thumbnailLink)',
-    });
-    return response.result.files;
-  } catch (err) {
-    console.error('Error listing files:', err);
-    throw err;
-  }
+  return tree;
+}
+
+// Get the root tree
+export async function getRootTree() {
+  return await buildFolderTree(ROOT_FOLDER_ID);
 }

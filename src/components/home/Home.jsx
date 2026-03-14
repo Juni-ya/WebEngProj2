@@ -1,45 +1,7 @@
-import React, { useState, useEffect } from 'react';
-import { Carousel, Button, ListGroup, Card, Row, Col } from 'react-bootstrap';
-import { handleClientLoad, handleAuthClick, handleSignoutClick, listFiles } from '../../googleDrive';
-
-const TEST_FOLDER_ID = 'YOUR_TEST_FOLDER_ID'; // Please replace with a real folder ID
+import React from 'react';
+import { Carousel, Card, Row, Col } from 'react-bootstrap';
 
 const Home = () => {
-  const [files, setFiles] = useState([]);
-  const [isLoggedIn, setIsLoggedIn] = useState(false);
-
-  useEffect(() => {
-    handleClientLoad();
-  }, []);
-
-  const authorize = async () => {
-    try {
-      await handleAuthClick();
-      setIsLoggedIn(true);
-    } catch (error) {
-      console.error('Authorization failed:', error);
-    }
-  };
-
-  const signOut = () => {
-    handleSignoutClick();
-    setIsLoggedIn(false);
-    setFiles([]);
-  };
-
-  const getFiles = async () => {
-    if (!TEST_FOLDER_ID || TEST_FOLDER_ID === 'YOUR_TEST_FOLDER_ID') {
-      alert('Please replace YOUR_TEST_FOLDER_ID with a real folder ID in Home.jsx');
-      return;
-    }
-    try {
-      const fileList = await listFiles(TEST_FOLDER_ID);
-      setFiles(fileList);
-    } catch (error) {
-      console.error('Error getting files:', error);
-    }
-  };
-
   return (
     <>
       <Carousel fade>
@@ -75,8 +37,8 @@ const Home = () => {
             style={{height: '500px', objectFit: 'cover', borderRadius: '15px'}}
           />
           <Carousel.Caption className="bg-dark bg-opacity-50 p-3 rounded">
-            <h3>Seamless Google Drive Integration</h3>
-            <p>Access your files and folders directly from Google Drive.</p>
+            <h3>Thesis Repository</h3>
+            <p>Access thesis files organized by year and department.</p>
           </Carousel.Caption>
         </Carousel.Item>
       </Carousel>
@@ -86,28 +48,10 @@ const Home = () => {
           <Col>
             <Card className="text-center shadow">
               <Card.Body>
-                <Card.Title as="h2" className="mb-4">Google Drive Integration</Card.Title>
+                <Card.Title as="h2" className="mb-4">Explore Our Features</Card.Title>
                 <Card.Text>
-                  Connect your Google Drive to access and manage your documents seamlessly.
+                  Navigate through departments, view the thesis repository, and explore our document flowchart.
                 </Card.Text>
-                {isLoggedIn ? (
-                  <div className="d-grid gap-2 d-md-flex justify-content-md-center">
-                    <Button onClick={signOut} variant="outline-danger" size="lg">Sign Out</Button>
-                    <Button onClick={getFiles} variant="primary" size="lg">Fetch Recent Files</Button>
-                  </div>
-                ) : (
-                  <Button onClick={authorize} variant="primary" size="lg">Authorize Google Drive</Button>
-                )}
-
-                {files.length > 0 && (
-                  <ListGroup className="mt-4 text-start">
-                    {files.map((file) => (
-                      <ListGroup.Item key={file.id} action href={file.webViewLink} target="_blank" rel="noopener noreferrer">
-                        {file.name}
-                      </ListGroup.Item>
-                    ))}
-                  </ListGroup>
-                )}
               </Card.Body>
             </Card>
           </Col>

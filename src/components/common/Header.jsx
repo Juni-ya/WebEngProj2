@@ -14,7 +14,7 @@ const Header = () => {
           className="d-inline-block align-top me-2"
           alt="Project Elec Logo"
         />
-        <span className="fw-bold">Project Elec</span>
+        <span className="fw-bold">Website Logo</span>
       </Navbar.Brand>
       <Navbar.Toggle aria-controls="basic-navbar-nav" />
       <Navbar.Collapse id="basic-navbar-nav">
