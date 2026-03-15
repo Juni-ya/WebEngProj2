@@ -1,6 +1,7 @@
 import React from 'react';
-import { Link } from 'react-router-dom';
-import { ListGroup, Card } from 'react-bootstrap';
+import { motion } from 'framer-motion';
+import { Briefcase } from 'react-feather';
+import styles from './Departments.module.css';
 
 const Departments = () => {
   const departmentList = [
@@ -14,19 +15,41 @@ const Departments = () => {
     { name: 'Department of Architecture', id: 'arch' },
   ];
 
+  const itemVariants = {
+    hidden: { opacity: 0, y: 20 },
+    visible: (i) => ({
+      opacity: 1,
+      y: 0,
+      transition: {
+        delay: i * 0.05, // Stagger delay
+        duration: 0.4,
+      },
+    }),
+  };
+
   return (
-    <Card className="shadow-sm">
-      <Card.Header as="h2" className="text-center">Academic Departments</Card.Header>
-      <Card.Body>
-        <ListGroup variant="flush">
-          {departmentList.map((dept) => (
-            <ListGroup.Item key={dept.id} action as="div" className="p-3">
-              {dept.name}
-            </ListGroup.Item>
+    <div className="container">
+      <div className={styles.departmentsContainer}>
+        <h2 className={styles.title}>Academic Departments</h2>
+        <div className={styles.grid}>
+          {departmentList.map((dept, i) => (
+            <motion.button
+              key={dept.id}
+              className={styles.departmentItem}
+              onClick={() => alert(`Navigating to ${dept.name}`)}
+              custom={i}
+              initial="hidden"
+              whileInView="visible"
+              viewport={{ once: true }}
+              variants={itemVariants}
+            >
+              <Briefcase className={styles.icon} size={20} />
+              <span>{dept.name}</span>
+            </motion.button>
           ))}
-        </ListGroup>
-      </Card.Body>
-    </Card>
+        </div>
+      </div>
+    </div>
   );
 };
 

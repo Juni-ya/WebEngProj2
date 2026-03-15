@@ -1,0 +1,118 @@
+.archivesContainer {
+  width: 100%;
+  background-color: var(--theme-background);
+  border-radius: 20px;
+  padding: 3rem 0; /* Adjust padding */
+  border: 1px solid var(--theme-border);
+  box-shadow: 0 4px 12px rgba(0, 0, 0, 0.05);
+  text-align: center;
+}
+
+.title {
+  font-size: 2.5rem;
+  margin-bottom: 2rem;
+  font-weight: 700;
+  color: var(--theme-text-primary);
+}
+
+.controls {
+  display: flex;
+  justify-content: center;
+  margin-bottom: 2rem;
+}
+
+.yearSelector {
+  background-color: var(--theme-background-secondary);
+  border: 1px solid var(--theme-border);
+  border-radius: 10px;
+  padding: 0.75rem 1.5rem;
+  font-size: 1.1rem;
+  color: var(--theme-text-primary);
+  cursor: pointer;
+}
+.yearSelector:focus {
+  outline: none;
+  border-color: var(--theme-accent-primary);
+}
+
+.loading, .error {
+  margin-top: 2rem;
+  font-size: 1.2rem;
+  color: var(--theme-text-secondary);
+}
+
+.accordion {
+  display: flex;
+  flex-direction: column;
+  gap: 1rem;
+  text-align: left;
+}
+
+.courseHeader {
+  background-color: var(--theme-background-secondary);
+  border: 1px solid var(--theme-border);
+  border-radius: 10px;
+  padding: 1.25rem 1.5rem;
+  cursor: pointer;
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  font-size: 1.1rem;
+  font-weight: 500;
+  width: 100%;
+  color: var(--theme-text-primary);
+}
+
+.courseContent {
+  overflow: hidden;
+  padding-left: 1.5rem;
+  border-left: 2px solid var(--theme-border);
+  margin-left: 1.5rem;
+}
+
+.fileList {
+  display: flex;
+  flex-direction: column;
+  gap: 0.5rem;
+  padding-top: 1rem;
+}
+
+.fileItem {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  padding: 0.75rem 1rem;
+  border-radius: 8px;
+  background-color: var(--theme-background-secondary);
+  border: 1px solid var(--theme-border);
+}
+
+.fileInfo {
+  display: flex;
+  align-items: center;
+  gap: 1rem;
+  color: var(--theme-text-secondary);
+}
+
+.fileActions {
+  display: flex;
+  gap: 0.75rem;
+}
+
+.actionButton {
+  background-color: var(--theme-background);
+  border: 1px solid var(--theme-border);
+  border-radius: 6px;
+  padding: 0.5rem;
+  color: var(--theme-text-secondary);
+  cursor: pointer;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  transition: all 0.2s ease-in-out;
+}
+
+.actionButton:hover {
+  color: var(--theme-accent-primary);
+  border-color: var(--theme-accent-primary);
+}

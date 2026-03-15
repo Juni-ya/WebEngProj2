@@ -1,5 +1,6 @@
-import { useEffect } from 'react';
+import { useEffect, useRef } from 'react';
 import Lenis from 'lenis';
+import { motion, useScroll, useTransform } from 'framer-motion';
 
 // Import all the components
 import Header from './components/common/Header';
@@ -16,16 +17,27 @@ import './App.css';
  * Main App component to orchestrate the scrollytelling layout.
  */
 function App() {
+  const lenisRef = useRef(null);
+
   // Set up Lenis for smooth scrolling
   useEffect(() => {
     const lenis = new Lenis();
+    lenisRef.current = lenis;
+
     function raf(time) {
       lenis.raf(time);
       requestAnimationFrame(raf);
     }
     requestAnimationFrame(raf);
+
     return () => lenis.destroy();
   }, []);
+
+  const handleScrollTo = (target) => {
+    if (lenisRef.current) {
+      lenisRef.current.scrollTo(target);
+    }
+  };
 
   // An array of the components to be rendered in sections
   const siteSections = [
@@ -36,23 +48,20 @@ function App() {
   ];
 
   return (
-    <>
-      <Header />
+    <div>
+      <Header onNavigate={handleScrollTo} />
       <main>
-        {/* We can add a non-sticky introductory section if needed */}
-        <div className="intro-section">
-          <h1>Scroll to explore the components</h1>
-        </div>
-
         {/* Map over the site sections and wrap each in a Section component */}
         {siteSections.map((section) => (
-          <Section key={section.id}>
-            {section.component}
-          </Section>
+          <div id={section.id} key={section.id}>
+            <Section>
+              {section.component}
+            </Section>
+          </div>
         ))}
       </main>
       <Footer />
-    </>
+    </div>
   );
 }
 

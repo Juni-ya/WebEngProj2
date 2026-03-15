@@ -23,6 +23,17 @@ main {
   text-align: center;
 }
 
+.intro-section h1 {
+  font-size: 3.5rem;
+}
+
+.intro-subtitle {
+  color: var(--theme-text-secondary);
+  font-size: 1.25rem;
+  max-width: 500px;
+  margin-top: 1rem;
+}
+
 /* Scrollytelling Section Styles */
 .sticky-section-track {
   position: relative;
@@ -37,51 +48,17 @@ main {
   height: 100vh;
   width: 100%;
   overflow: hidden;
-  display: flex;
-  justify-content: center;
-  align-items: center;
 }
 
-/* Container to hold the component within the sticky section */
-.sticky-content > * {
-  width: 90%;
+/* New reusable container class for centered content */
+.container {
+  width: 100%;
   max-width: 1200px;
-}
-
-
-/* Dark Theme Overrides for React-Bootstrap Components */
-.card,
-.list-group-item,
-.accordion-item,
-.accordion-header button,
-footer.bg-light {
-  background-color: #1a1a1a !important;
-  color: #f0f0f0 !important;
-  border-color: #333 !important;
-}
-
-.list-group-item:hover {
-  background-color: #2a2a2a !important;
-}
-
-.card-header, .text-muted, .carousel-caption p {
-  color: #a0a0a0 !important;
-}
-
-.accordion-button::after {
-  filter: invert(1);
-}
-
-.dropdown-menu {
-  background-color: #2a2a2a;
-  border-color: #444;
-}
-
-.dropdown-item {
-  color: #f0f0f0;
-}
-
-.dropdown-item:hover {
-  background-color: #3a3a3a;
-  color: #fff;
+  margin-left: auto;
+  margin-right: auto;
+  padding: 0 2rem;
+  height: 100%; /* Allow it to fill the parent */
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
 }

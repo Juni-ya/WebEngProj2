@@ -16,7 +16,7 @@ const Section = ({ children }) => {
 
   // Animate opacity and position based on scroll progress
   const opacity = useTransform(scrollYProgress, [0, 0.25, 0.75, 1], [0, 1, 1, 0]);
-  const y = useTransform(scrollYProgress, [0, 0.25, 0.75, 1], ['50px', '0px', '0px', '-50px']);
+  const y = useTransform(scrollYProgress, [0, 0.25, 0.75, 1], ['30px', '0px', '0px', '-30px']);
 
   return (
     // The "track" for the sticky element. Its height determines the scroll duration.
