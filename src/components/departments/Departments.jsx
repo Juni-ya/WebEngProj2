@@ -20,7 +20,7 @@ const Departments = () => {
       <Card.Body>
         <ListGroup variant="flush">
           {departmentList.map((dept) => (
-            <ListGroup.Item key={dept.id} action as={Link} to={`/departments/${dept.id}`} className="p-3">
+            <ListGroup.Item key={dept.id} action as="div" className="p-3">
               {dept.name}
             </ListGroup.Item>
           ))}

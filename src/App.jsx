@@ -1,35 +1,58 @@
-import React from 'react';
-import { BrowserRouter as Router, Route, Routes } from 'react-router-dom';
-import { Container } from 'react-bootstrap';
+import { useEffect } from 'react';
+import Lenis from 'lenis';
+
+// Import all the components
 import Header from './components/common/Header';
 import Footer from './components/common/Footer';
+import Section from './components/common/Section';
 import Home from './components/home/Home';
 import Departments from './components/departments/Departments';
-import DepartmentDetails from './components/departments/DepartmentDetails';
 import Archives from './components/archives/Archives';
 import Flowchart from './components/flowchart/Flowchart';
-import 'bootstrap/dist/css/bootstrap.min.css';
+
 import './App.css';
 
+/**
+ * Main App component to orchestrate the scrollytelling layout.
+ */
 function App() {
+  // Set up Lenis for smooth scrolling
+  useEffect(() => {
+    const lenis = new Lenis();
+    function raf(time) {
+      lenis.raf(time);
+      requestAnimationFrame(raf);
+    }
+    requestAnimationFrame(raf);
+    return () => lenis.destroy();
+  }, []);
+
+  // An array of the components to be rendered in sections
+  const siteSections = [
+    { id: 'home', component: <Home /> },
+    { id: 'departments', component: <Departments /> },
+    { id: 'flowchart', component: <Flowchart /> },
+    { id: 'archives', component: <Archives /> },
+  ];
+
   return (
-    <Router>
-      <div className="d-flex flex-column min-vh-100">
-        <Header />
-        <main className="flex-grow-1">
-          <Container className="my-5">
-            <Routes>
-              <Route path="/" element={<Home />} />
-              <Route path="/departments" element={<Departments />} />
-              <Route path="/departments/:id" element={<DepartmentDetails />} />
-              <Route path="/archives" element={<Archives />} />
-              <Route path="/flowchart" element={<Flowchart />} />
-            </Routes>
-          </Container>
-        </main>
-        <Footer />
-      </div>
-    </Router>
+    <>
+      <Header />
+      <main>
+        {/* We can add a non-sticky introductory section if needed */}
+        <div className="intro-section">
+          <h1>Scroll to explore the components</h1>
+        </div>
+
+        {/* Map over the site sections and wrap each in a Section component */}
+        {siteSections.map((section) => (
+          <Section key={section.id}>
+            {section.component}
+          </Section>
+        ))}
+      </main>
+      <Footer />
+    </>
   );
 }
 
