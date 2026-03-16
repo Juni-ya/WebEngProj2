@@ -5,16 +5,16 @@ import './Header.css';
 
 const Header = () => {
   return (
-    <Navbar bg="light" variant="light" expand="lg" className="shadow-sm">
+    <Navbar expand="lg" className="shadow-sm bulsu-header">
       <Navbar.Brand as={Link} to="/" className="d-flex align-items-center">
         <img
           src="https://via.placeholder.com/30"
           width="30"
           height="30"
           className="d-inline-block align-top me-2"
-          alt="Project Elec Logo"
+          alt="BulSU Logo"
         />
-        <span className="fw-bold">Website Logo</span>
+        <span className="fw-bold">BulSU COE</span>
       </Navbar.Brand>
       <Navbar.Toggle aria-controls="basic-navbar-nav" />
       <Navbar.Collapse id="basic-navbar-nav">

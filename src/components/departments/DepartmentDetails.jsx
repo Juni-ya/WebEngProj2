@@ -3,14 +3,154 @@ import { useParams, Link } from 'react-router-dom';
 import { Card, Breadcrumb, Row, Col, ListGroup } from 'react-bootstrap';
 
 const departmentData = {
-  cse: { name: 'Department of Computer Engineering' },
-  ece: { name: 'Department of Electronics Engineering' },
-  eee: { name: 'Department of Electrical Engineering' },
-  me: { name: 'Department of Mechanical Engineering' },
-  ce: { name: 'Department of Civil Engineering' },
-  ie: { name: 'Department of Industrial Engineering' },
-  che: { name: 'Department of Chemical Engineering' },
-  arch: { name: 'Department of Architecture' },
+  ce: {
+    name: 'Department of Civil Engineering',
+    faculty: [
+      { name: 'Engr. Radger Teddy Manuel', position: 'Program Chair, Civil Engineering' },
+      { name: 'Engr. Romualdo Caluag', position: 'Faculty, Civil Engineering' },
+      { name: 'Engr. Joyce Evangelista', position: 'Faculty, Civil Engineering' },
+      { name: 'Engr. Sarah Faustino', position: 'Faculty, Civil Engineering' },
+      { name: 'Engr. Renato Gopez', position: 'Faculty, Civil Engineering' },
+      { name: 'Engr. Merricris Pangilinan', position: 'Faculty, Civil Engineering' },
+      { name: 'Engr. Jennie Roque', position: 'Faculty, Civil Engineering' },
+      { name: 'Engr. Florence Samonte', position: 'Faculty, Civil Engineering' },
+      { name: 'Engr. June-june Santos', position: 'Faculty, Civil Engineering' },
+      { name: 'Engr. Maureen Therese Balayan', position: 'Part-time Instructor, Civil Engineering' },
+      { name: 'Engr. Ace Dhenniel V. Daria', position: 'Part-time Instructor, Civil Engineering' },
+      { name: 'Engr. Cecilia A.  Geronimo', position: 'Part-time Instructor, Civil Engineering' },
+      { name: 'Engr. Rondolf Lobo', position: 'Part-time Instructor, Civil Engineering' },
+      { name: 'Engr. Marbel Perez', position: 'Part-time Instructor, Civil Engineering' },
+    ],
+  },
+  cse: {
+    name: 'Department of Computer Engineering',
+    faculty: [
+        { name: 'Engr. Alexander M. Aquino', position: 'Faculty, Computer Engineering' },
+        { name: 'Dr. Lech Walesa M. Navarra', position: 'Faculty, Computer Engineering' },
+        { name: 'Engr. Maria Lorena SP. Villena', position: 'Faculty, Computer Engineering' },
+        { name: 'Engr. Bernard G. Yasay', position: 'Faculty, Computer Engineering' },
+        { name: 'Engr. Catherine V. Dela Cruz', position: 'Faculty, Computer Engineering' },
+        { name: 'Engr. Richard Y. Dela Cruz', position: 'Faculty, Computer Engineering' },
+        { name: 'Dr. Ma. Magdalena V. Gatdula', position: 'Faculty, Computer Engineering' },
+        { name: 'Dr. Monaliza S. Jimenez', position: 'Faculty, Computer Engineering' },
+        { name: 'Engr. Julius Vincent M. Abanel', position: 'Part-Time Instructor, Computer Engineering' },
+        { name: 'Engr. Hiroyoshi  DG. Arai', position: 'Part-Time Instructor, Computer Engineering' },
+        { name: 'Engr. Robert Justin S. Chavez', position: 'Part-Time Instructor, Computer Engineering' },
+        { name: 'Engr. Albert C. Cruz Jr.', position: 'Part-Time Instructor, Computer Engineering' },
+        { name: 'Engr. Maria Ana G. Dangan', position: 'Guest Lecturer, Computer Engineering' },
+        { name: 'Engr. Sheila May M. Liwag', position: 'Guest Lecturer, Computer Engineering' },
+    ],
+  },
+  ece: {
+    name: 'Department of Electronics Engineering',
+    faculty: [
+        { name: 'Engr. Donald M. Lapiguera', position: 'Program Chair, Electronics Engineering' },
+        { name: 'Engr. Mervin E. Albalate', position: 'Faculty, Electronics Engineering' },
+        { name: 'Dr. Russell N. Alfonso', position: 'Faculty, Electronics Engineering' },
+        { name: 'Engr. Hilario A. Calinao Jr.', position: 'Faculty, Electronics Engineering' },
+        { name: 'Engr. Jenette C. Centeno', position: 'Faculty, Electronics Engineering' },
+        { name: 'Engr. Dennis R. dela Cruz', position: 'Faculty, Electronics Engineering' },
+        { name: 'Dr. Reagan L. Galvez, PECE', position: 'Faculty, Electronics Engineering' },
+        { name: 'Engr. Albert Ian R. Javier', position: 'Faculty, Electronics Engineering' },
+        { name: 'Engr. Nasher G. Jimenez, PECE', position: 'Faculty, Electronics Engineering' },
+        { name: 'Engr. Amor A. Lacara', position: 'Faculty, Electronics Engineering' },
+        { name: 'Dr. Marlon C. Leyesa, PECE', position: 'Faculty, Electronics Engineering' },
+        { name: 'Prof. Oliver R. Mariano, PECE, ASEAN Engr.', position: 'Faculty, Electronics Engineering' },
+        { name: 'Engr. Dion Michael M. Mendoza', position: 'Faculty, Electronics Engineering' },
+        { name: 'Engr. Paul Ryan A. Santiago', position: 'Faculty, Electronics Engineering' },
+        { name: 'Engr. Rina S.P. Santiago', position: 'Faculty, Electronics Engineering' },
+        { name: 'Engr. Jeffrey V. Cayetano', position: 'Part-time Instructor, Electronics Engineering' },
+        { name: 'Engr. Nemuel Norman F. Giron', position: 'Part-time Instructor, Electronics Engineering' },
+        { name: 'Engr. Evangelyn C. Samson', position: 'Part-time Instructor, Electronics Engineering' },
+        { name: 'Engr. Benjamin L. Santa maria, jr.', position: 'Part-time Instructor, Electronics Engineering' },
+        { name: 'Engr. Christian S. Fajardo, PECE, ASEAN Engr.', position: 'Industrial Lecturer, Electronics Engineering' },
+        { name: 'Engr. Richard R. Garcia, PECE, ASEAN, ACPE, APEC Engr.', position: 'Industrial Lecturer, Electronics Engineering' },
+    ],
+  },
+  eee: {
+    name: 'Department of Electrical Engineering',
+    faculty: [
+        { name: 'Engr. Arjay R. Alba', position: 'Faculty, Electrical Engineering' },
+        { name: 'Engr. Dennis L. Aguirre', position: 'Faculty, Electrical Engineering' },
+        { name: 'Engr. Reynaldo C. Alejandria', position: 'Faculty, Electrical Engineering' },
+        { name: 'Engr. Ronan Cadmiel C. Castro', position: 'Faculty, Electrical Engineering' },
+        { name: 'Engr. Jovita SP. Domingo', position: 'Faculty, Electrical Engineering' },
+        { name: 'Engr. Riah Ann DR. Fermin-Cayanan', position: 'Faculty, Electrical Engineering' },
+        { name: 'Engr. Mark Adrian R. Lunaria', position: 'Faculty, Electrical Engineering' },
+        { name: 'Engr. Eleazer C. Nabong', position: 'Faculty, Electrical Engineering' },
+        { name: 'Engr. Allan Clark H. Timoteo', position: 'Faculty, Electrical Engineering' },
+        { name: 'Engr. John Byrone A. Clavio', position: 'Part-time Instructor, Electrical Engineering' },
+        { name: 'Engr. Mark Louie D. Martinez', position: 'Part-time Instructor, Electrical Engineering' },
+        { name: 'Engr. Rogelio C. Pimentel', position: 'Part-time Instructor, Electrical Engineering' },
+        { name: 'Engr. Anthony T. Reyes', position: 'Part-time Instructor, Electrical Engineering' },
+        { name: 'Engr. Ronel I. Serrano', position: 'Part-time Instructor, Electrical Engineering' },
+        { name: 'Engr. Diane H. Villanueva', position: 'Part-time Instructor, Electrical Engineering' },
+        { name: 'Engr. Nhowel F. Jimenez', position: 'Part-time Instructor, Electrical Engineering' },
+        { name: 'Engr. John Paul V. Dela Cruz', position: 'Industry Lecturer, Electrical Engineering' },
+    ],
+  },
+  ie: {
+    name: 'Department of Industrial Engineering',
+    faculty: [
+        { name: 'Engr. Jeremy Laurence M. Bañez, MSIE, CIE, Assoc. ASEAN Eng.', position: 'Program Chair, Industrial Engineering' },
+        { name: 'Engr. Marianne B. Calayag, MSMfE, PIE, ASEAN Eng.', position: 'Faculty, Industrial Engineering' },
+        { name: 'Engr. Hazel A. Caparas, MSIE, PIE, ASEAN Eng.', position: 'Faculty, Industrial Engineering' },
+        { name: 'Dr. Rick Donald S. Manzon, PhD-Eng Mgt, MSIE, PIE', position: 'Faculty, Industrial Engineering' },
+        { name: 'Engr. Ivy Mar J. Ramos, MBA, PIE, ASEAN Eng.', position: 'Faculty, Industrial Engineering' },
+        { name: 'Engr. Dyan G. Rodriguez, MSIE, PIE, ASEAN Eng.', position: 'Faculty, Industrial Engineering' },
+        { name: 'Engr. Christian Lance P. Arojado', position: 'Part-time Instructor, Industrial Engineering' },
+        { name: 'Engr. Steven C. Co, Jr., CIE, Assoc. ASEAN Eng.', position: 'Part-time Instructor, Industrial Engineering' },
+        { name: 'Engr. Raph John P. Miranda, CIE', position: 'Part-time Instructor, Industrial Engineering' },
+        { name: 'Engr. Juan C. Tecson, LLB, PIE', position: 'Part-time Instructor, Industrial Engineering' },
+        { name: 'Engr. Jasper Kevin C. Dionisio, CIE, Assoc. ASEAN Eng.', position: 'Industry Lecturer, Industrial Engineering' },
+    ],
+  },
+  mfe: {
+      name: 'Department of Manufacturing Engineering',
+      faculty: [
+          { name: 'Engr. Romano A. Gabrillo', position: 'Program Chair, Manufacturing Engineering' },
+          { name: 'Engr. Nancy M. Santiago', position: 'Faculty, Manufacturing Engineering' },
+          { name: 'Engr. Cyrus Lawrence C. Bual', position: 'Faculty, Manufacturing Engineering' },
+          { name: 'Engr. Rachel C. Bual', position: 'Faculty, Manufacturing Engineering' },
+          { name: 'Engr. Nasher G. Jimenez, PECE', position: 'Faculty, Manufacturing Engineering' },
+          { name: 'Engr. Jayvee L. Jimenez', position: 'Part-time Instructor, Manufacturing Engineering' },
+          { name: 'Engr. Precious Rose F. Galvez', position: 'Part-time Instructor, Manufacturing Engineering' },
+      ]
+  },
+  me: {
+    name: 'Department of Mechanical Engineering',
+    faculty: [
+        { name: 'Engr. Adrian C. Flores', position: 'Faculty, Mechanical Engineering' },
+        { name: 'Engr. Aldrin C. Bernardo', position: 'Faculty, Mechanical Engineering' },
+        { name: 'Engr. Boris R. Palao', position: 'Faculty, Mechanical Engineering' },
+        { name: 'Engr. Felizardo S. Camilon Jr.', position: 'Faculty, Mechanical Engineering' },
+        { name: 'Engr. Ian Jay T. Matias', position: 'Faculty, Mechanical Engineering' },
+        { name: 'Engr. Romulo B. Panotes Jr.', position: 'Faculty, Mechanical Engineering' },
+        { name: 'Engr. Amparo Cecilia DS. Sarmiento', position: 'Part-Time Instructor, Mechanical Engineering' },
+        { name: 'Engr. Haivell Joy C. Matias', position: 'Part-Time Instructor, Mechanical Engineering' },
+        { name: 'Engr. Arren B. Santos', position: 'Part-Time Instructor, Mechanical Engineering' },
+        { name: 'Engr. Audie L. Geronimo', position: 'Part-Time Instructor, Mechanical Engineering' },
+        { name: 'Engr. Zedrick T. Farin', position: 'Part-Time Instructor, Mechanical Engineering' },
+        { name: 'Engr. Aeron Cris C. Pacis', position: 'Industry Lecturer, Mechanical Engineering' },
+        { name: 'Engr. Earl Jan L. Santos', position: 'Guest Lecturer, Mechanical Engineering' },
+    ],
+  },
+  mce: {
+      name: 'Department of Mechatronics Engineering',
+      faculty: [
+        { name: 'Engr. Arvin Julius S. Tullao', position: 'Program Chair, Mechatronics Engineering' },
+        { name: 'Engr. Nasher G. Jimenez, PECE', position: 'Faculty, Mechatronics Engineering' },
+        { name: 'Engr. Gabriel Angelo V. Pascual', position: 'Part-Time Instructor, Mechatronics Engineering' },
+        { name: 'Engr. Al Justin S. Geronimo', position: 'Part-Time Instructor, Mechatronics Engineering' },
+        { name: 'Engr. Jerome B. Bagsic', position: 'Part-Time Instructor, Mechatronics Engineering' },
+        { name: 'Engr. Juan Martin R. Cruz', position: 'Part-Time Instructor, Mechatronics Engineering' },
+        { name: 'Engr. Reggiel Clint L. Valdez', position: 'Part-Time Instructor, Mechatronics Engineering' },
+        { name: 'Engr. Jason D. Lozano', position: 'Part-Time Instructor, Mechatronics Engineering' },
+        { name: 'Engr. John Darwin P. Quintal', position: 'Part-Time Instructor, Mechatronics Engineering' },
+      ]
+  },
+  che: { name: 'Department of Chemical Engineering', faculty: [] },
+  arch: { name: 'Department of Architecture', faculty: [] },
 };
 
 const DepartmentDetails = () => {
@@ -24,24 +164,22 @@ const DepartmentDetails = () => {
         <Breadcrumb.Item active>{department.name}</Breadcrumb.Item>
       </Breadcrumb>
 
-      <Card className="shadow-sm">
+      <Card className="shadow-sm bulsu-border">
         <Card.Header as="h2">{department.name}</Card.Header>
         <Card.Body>
           <Row>
-            <Col md={6}>
-              <Card.Title>Employee Portfolios</Card.Title>
+            <Col>
+              <Card.Title>Faculty Members</Card.Title>
               <ListGroup>
-                <ListGroup.Item>Faculty Members</ListGroup.Item>
-                <ListGroup.Item>Regular Staff</ListGroup.Item>
-                <ListGroup.Item>Part-time Staff</ListGroup.Item>
-              </ListGroup>
-            </Col>
-            <Col md={6}>
-              <Card.Title>Research and Extension Activities</Card.Title>
-              <ListGroup>
-                <ListGroup.Item>Ongoing Research</ListGroup.Item>
-                <ListGroup.Item>Completed Research</ListGroup.Item>
-                <ListGroup.Item>Extension Projects</ListGroup.Item>
+                {department.faculty && department.faculty.length > 0 ? (
+                  department.faculty.map((member, index) => (
+                    <ListGroup.Item key={index}>
+                      <strong>{member.name}</strong> - {member.position}
+                    </ListGroup.Item>
+                  ))
+                ) : (
+                  <ListGroup.Item>No faculty information available.</ListGroup.Item>
+                )}
               </ListGroup>
             </Col>
           </Row>

@@ -10,12 +10,14 @@ const Departments = () => {
     { name: 'Department of Mechanical Engineering', id: 'me' },
     { name: 'Department of Civil Engineering', id: 'ce' },
     { name: 'Department of Industrial Engineering', id: 'ie' },
+    { name: 'Department of Manufacturing Engineering', id: 'mfe' },
+    { name: 'Department of Mechatronics Engineering', id: 'mce' },
     { name: 'Department of Chemical Engineering', id: 'che' },
     { name: 'Department of Architecture', id: 'arch' },
   ];
 
   return (
-    <Card className="shadow-sm">
+    <Card className="shadow-sm bulsu-border">
       <Card.Header as="h2" className="text-center">Academic Departments</Card.Header>
       <Card.Body>
         <ListGroup variant="flush">

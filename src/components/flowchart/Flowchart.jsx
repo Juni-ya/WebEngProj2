@@ -15,7 +15,7 @@ const DocumentFlowchart = () => {
 
   return (
     <div className="flowchart-container">
-      <Card className="shadow-sm">
+      <Card className="shadow-sm bulsu-border">
         <Card.Header as="h2" className="text-center">Extension Process Flowchart</Card.Header>
         <Card.Body className="text-center">
           <p className="text-muted">Click a process step to view and download required templates.</p>

@@ -32,7 +32,7 @@ const Archives = () => {
   if (error) return <div>{error}</div>;
 
   return (
-    <Card className="shadow-sm">
+    <Card className="shadow-sm bulsu-border">
       <Card.Header as="h2" className="text-center">Thesis Repository</Card.Header>
       <Card.Body>
         <div className="d-flex justify-content-center mb-4">

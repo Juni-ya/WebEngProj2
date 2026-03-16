@@ -1,63 +1,88 @@
 import React from 'react';
-import { Carousel, Card, Row, Col } from 'react-bootstrap';
+import { Container, Row, Col, Card, Carousel, Button } from 'react-bootstrap';
+import { Link } from 'react-router-dom';
+
+const departments = [
+  { id: 'cse', name: 'Department of Computer Engineering' },
+  { id: 'ece', name: 'Department of Electronics Engineering' },
+  { id: 'eee', name: 'Department of Electrical Engineering' },
+  { id: 'me', name: 'Department of Mechanical Engineering' },
+  { id: 'ce', name: 'Department of Civil Engineering' },
+  { id: 'ie', name: 'Department of Industrial Engineering' },
+  { id: 'mfe', name: 'Department of Manufacturing Engineering' },
+  { id: 'mce', name: 'Department of Mechatronics Engineering' },
+  { id: 'che', name: 'Department of Chemical Engineering' },
+  { id: 'arch', name: 'Department of Architecture' }
+];
+
+const chunkArray = (arr, size) => {
+  const chunks = [];
+  for (let i = 0; i < arr.length; i += size) {
+    chunks.push(arr.slice(i, i + size));
+  }
+  return chunks;
+};
+
+const departmentChunks = chunkArray(departments, 3);
 
 const Home = () => {
   return (
-    <>
-      <Carousel fade>
-        <Carousel.Item>
-          <img
-            className="d-block w-100"
-            src="https://images.unsplash.com/photo-1519389950473-47ba0277781c?ixlib=rb-1.2.1&auto=format&fit=crop&w=1350&q=80"
-            alt="First slide"
-            style={{height: '500px', objectFit: 'cover', borderRadius: '15px'}}
-          />
-          <Carousel.Caption className="bg-dark bg-opacity-50 p-3 rounded">
-            <h3>Welcome to the Research and Extension Portal</h3>
-            <p>A centralized hub for all your academic and research needs.</p>
-          </Carousel.Caption>
-        </Carousel.Item>
-        <Carousel.Item>
-          <img
-            className="d-block w-100"
-            src="https://images.unsplash.com/photo-1522202176988-66273c2fd55f?ixlib=rb-1.2.1&auto=format&fit=crop&w=1351&q=80"
-            alt="Second slide"
-            style={{height: '500px', objectFit: 'cover', borderRadius: '15px'}}
-          />
-          <Carousel.Caption className="bg-dark bg-opacity-50 p-3 rounded">
-            <h3>Dynamic Document Flow</h3>
-            <p>Visualize and navigate through document processes with our interactive flowchart.</p>
-          </Carousel.Caption>
-        </Carousel.Item>
-        <Carousel.Item>
-          <img
-            className="d-block w-100"
-            src="https://images.unsplash.com/photo-1556740738-b6a63e27c4df?ixlib=rb-1.2.1&auto=format&fit=crop&w=1350&q=80"
-            alt="Third slide"
-            style={{height: '500px', objectFit: 'cover', borderRadius: '15px'}}
-          />
-          <Carousel.Caption className="bg-dark bg-opacity-50 p-3 rounded">
-            <h3>Thesis Repository</h3>
-            <p>Access thesis files organized by year and department.</p>
-          </Carousel.Caption>
-        </Carousel.Item>
-      </Carousel>
-
-      <div className="my-5">
-        <Row>
-          <Col>
-            <Card className="text-center shadow">
+    <Container className="py-5">
+      {/* COE Organizational Structure */}
+      <section className="mb-5">
+        <h2 className="text-center mb-4 bulsu-accent">College of Engineering Organizational Structure</h2>
+        <Row className="justify-content-center mb-4">
+          <Col md={6} lg={4}>
+            <Card className="text-center shadow-lg mb-3 bulsu-border">
               <Card.Body>
-                <Card.Title as="h2" className="mb-4">Explore Our Features</Card.Title>
-                <Card.Text>
-                  Navigate through departments, view the thesis repository, and explore our document flowchart.
-                </Card.Text>
+                <Card.Title>Dean of the College</Card.Title>
               </Card.Body>
             </Card>
           </Col>
         </Row>
-      </div>
-    </>
+        <Row className="justify-content-center">
+          <Col md={4} lg={3}>
+            <Card className="text-center shadow-sm mb-3 bulsu-border">
+              <Card.Body>
+                <Card.Title>Associate Dean</Card.Title>
+              </Card.Body>
+            </Card>
+          </Col>
+          <Col md={4} lg={3}>
+            <Card className="text-center shadow-sm mb-3 bulsu-border">
+              <Card.Body>
+                <Card.Title>College Secretary</Card.Title>
+              </Card.Body>
+            </Card>
+          </Col>
+        </Row>
+      </section>
+
+      {/* Department Carousel */}
+      <section>
+        <h2 className="text-center mb-4 bulsu-accent">Explore Our Departments</h2>
+        <Carousel>
+          {departmentChunks.map((chunk, index) => (
+            <Carousel.Item key={index}>
+              <Row className="justify-content-center">
+                {chunk.map(dept => (
+                  <Col md={6} lg={4} key={dept.id} className="mb-3">
+                    <Card className="text-center shadow-sm h-100 bulsu-border">
+                      <Card.Body>
+                        <Card.Title>{dept.name}</Card.Title>
+                        <Link to={`/departments/${dept.id}`}>
+                          <Button variant="primary">View Department</Button>
+                        </Link>
+                      </Card.Body>
+                    </Card>
+                  </Col>
+                ))}
+              </Row>
+            </Carousel.Item>
+          ))}
+        </Carousel>
+      </section>
+    </Container>
   );
 };
 

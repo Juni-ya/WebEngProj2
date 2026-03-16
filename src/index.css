@@ -13,6 +13,13 @@
   text-rendering: optimizeLegibility;
   -webkit-font-smoothing: antialiased;
   -moz-osx-font-smoothing: grayscale;
+
+  /* BulSU Color Scheme */
+  --bulsu-red: #C8102E;
+  --bulsu-gold: #FFD700;
+  --bulsu-blue: #003366;
+  --bulsu-white: #FFFFFF;
+  --bulsu-gray: #6c757d;
 }
 
 body {
@@ -20,6 +27,8 @@ body {
   display: flex;
   flex-direction: column;
   min-height: 100vh;
+  background-color: var(--bulsu-white);
+  color: var(--bulsu-blue);
 }
 
 #root {
@@ -30,23 +39,117 @@ body {
 
 a {
   font-weight: 500;
-  color: #0d6efd;
+  color: var(--bulsu-red);
   text-decoration: none;
   transition: color 0.2s ease-in-out;
 }
 
 a:hover {
-  color: #0a58ca;
+  color: var(--bulsu-gold);
 }
 
 h1, h2, h3, h4, h5, h6 {
   font-weight: 700;
-  color: #343a40;
+  color: var(--bulsu-blue);
 }
 
 .btn-primary {
-    background-color: #0d6efd;
-    border-color: #0d6efd;
+  background-color: var(--bulsu-red);
+  border-color: var(--bulsu-red);
+  color: var(--bulsu-white);
+}
+
+.btn-primary:hover {
+  background-color: #A00D24; /* Darker red */
+  border-color: #A00D24;
+  color: var(--bulsu-white);
+}
+
+.btn-secondary {
+  background-color: var(--bulsu-gold);
+  border-color: var(--bulsu-gold);
+  color: var(--bulsu-blue);
+}
+
+.btn-secondary:hover {
+  background-color: #E6C200; /* Darker gold */
+  border-color: #E6C200;
+  color: var(--bulsu-blue);
+}
+
+.card {
+  border: 1px solid var(--bulsu-gold);
+  background-color: var(--bulsu-white);
+}
+
+.card-header {
+  background-color: var(--bulsu-blue);
+  color: var(--bulsu-white);
+  border-bottom: 1px solid var(--bulsu-gold);
+}
+
+.card-title {
+  color: var(--bulsu-blue);
+}
+
+.navbar {
+  background-color: var(--bulsu-blue);
+}
+
+.navbar-brand {
+  color: var(--bulsu-gold);
+  font-weight: bold;
+}
+
+.navbar-nav .nav-link {
+  color: var(--bulsu-white);
+}
+
+.navbar-nav .nav-link:hover {
+  color: var(--bulsu-gold);
+}
+
+.carousel-control-prev-icon,
+.carousel-control-next-icon {
+  background-color: var(--bulsu-red);
+}
+
+.carousel-indicators button {
+  background-color: var(--bulsu-gold);
+}
+
+.carousel-indicators .active {
+  background-color: var(--bulsu-red);
+}
+
+.shadow-lg {
+  box-shadow: 0 1rem 3rem rgba(0, 51, 102, 0.175) !important;
+}
+
+.shadow-sm {
+  box-shadow: 0 0.125rem 0.25rem rgba(0, 51, 102, 0.075) !important;
+}
+
+.text-center {
+  color: var(--bulsu-blue);
+}
+
+.rounded {
+  border-radius: 0.375rem !important;
+}
+
+/* Additional BulSU Elements */
+.bulsu-header {
+  background: linear-gradient(135deg, var(--bulsu-blue) 0%, var(--bulsu-red) 100%);
+  color: var(--bulsu-white);
+}
+
+.bulsu-accent {
+  color: var(--bulsu-gold);
+}
+
+.bulsu-border {
+  border-color: var(--bulsu-gold) !important;
 }
 
 .btn-primary:hover {
