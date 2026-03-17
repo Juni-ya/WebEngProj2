@@ -123,7 +123,7 @@ const AnimatedList = ({
 
   return (
     <div className={`scroll-list-container ${className}`}>
-      <div ref={listRef} className={`scroll-list ${!displayScrollbar ? 'no-scrollbar' : ''}`} onScroll={handleScroll}>
+      <div ref={listRef} className={`scroll-list ${!displayScrollbar ? 'no-scrollbar' : ''}`} onScroll={handleScroll} onMouseLeave={() => setSelectedIndex(-1)}>
         {items.map((item, index) => (
           <AnimatedItem
             key={index}
@@ -133,7 +133,7 @@ const AnimatedList = ({
             onClick={() => handleItemClick(item, index)}
           >
             <div className={`item ${selectedIndex === index ? 'selected' : ''} ${itemClassName}`}>
-              <p className="item-text">{item}</p>
+              {typeof item === 'string' ? <p className="item-text">{item}</p> : item}
             </div>
           </AnimatedItem>
         ))}

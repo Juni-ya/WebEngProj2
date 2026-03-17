@@ -1,6 +1,8 @@
 import React from 'react';
 import { Container, Row, Col, Card, Carousel, Button } from 'react-bootstrap';
 import { Link } from 'react-router-dom';
+import AnimatedContent from '../common/AnimatedContent';
+import BlurText from '../common/BlurText';
 
 const departments = [
   { id: 'cse', name: 'Department of Computer Engineering' },
@@ -30,30 +32,76 @@ const Home = () => {
     <Container className="py-5">
       {/* COE Organizational Structure */}
       <section className="mb-5">
-        <h2 className="text-center mb-4 bulsu-accent">College of Engineering Organizational Structure</h2>
+        <BlurText
+          text="College of Engineering Organizational Structure"
+          delay={150}
+          animateBy="words"
+          direction="top"
+          className="text-center mb-4 bulsu-accent h2"
+          onAnimationComplete={() => console.log('Title animation completed!')}
+        />
         <Row className="justify-content-center mb-4">
           <Col md={6} lg={4}>
-            <Card className="text-center shadow-lg mb-3 bulsu-border">
-              <Card.Body>
-                <Card.Title>Dean of the College</Card.Title>
-              </Card.Body>
-            </Card>
+            <AnimatedContent
+              distance={100}
+              direction="vertical"
+              reverse={true}
+              duration={0.8}
+              ease="power3.out"
+              initialOpacity={0}
+              animateOpacity
+              scale={0.8}
+              threshold={0.1}
+              delay={0}
+            >
+              <Card className="text-center shadow-lg mb-3 bulsu-border">
+                <Card.Body>
+                  <Card.Title>Dean of the College</Card.Title>
+                </Card.Body>
+              </Card>
+            </AnimatedContent>
           </Col>
         </Row>
         <Row className="justify-content-center">
           <Col md={4} lg={3}>
-            <Card className="text-center shadow-sm mb-3 bulsu-border">
-              <Card.Body>
-                <Card.Title>Associate Dean</Card.Title>
-              </Card.Body>
-            </Card>
+            <AnimatedContent
+              distance={100}
+              direction="horizontal"
+              reverse={true}
+              duration={0.8}
+              ease="power3.out"
+              initialOpacity={0}
+              animateOpacity
+              scale={0.8}
+              threshold={0.1}
+              delay={0.2}
+            >
+              <Card className="text-center shadow-sm mb-3 bulsu-border">
+                <Card.Body>
+                  <Card.Title>Associate Dean</Card.Title>
+                </Card.Body>
+              </Card>
+            </AnimatedContent>
           </Col>
           <Col md={4} lg={3}>
-            <Card className="text-center shadow-sm mb-3 bulsu-border">
-              <Card.Body>
-                <Card.Title>College Secretary</Card.Title>
-              </Card.Body>
-            </Card>
+            <AnimatedContent
+              distance={100}
+              direction="horizontal"
+              reverse={false}
+              duration={0.8}
+              ease="power3.out"
+              initialOpacity={0}
+              animateOpacity
+              scale={0.8}
+              threshold={0.1}
+              delay={0.4}
+            >
+              <Card className="text-center shadow-sm mb-3 bulsu-border">
+                <Card.Body>
+                  <Card.Title>College Secretary</Card.Title>
+                </Card.Body>
+              </Card>
+            </AnimatedContent>
           </Col>
         </Row>
       </section>

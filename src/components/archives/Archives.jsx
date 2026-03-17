@@ -1,7 +1,8 @@
 import React, { useState, useEffect } from 'react';
-import { Dropdown, Card, ListGroup, Accordion, Button } from 'react-bootstrap';
+import { Dropdown, Card, Accordion, Button } from 'react-bootstrap';
 import { getRootTree } from '../../googleDrive';
 import { LoadingIndicator } from '../application/loading-indicator/loading-indicator';
+import AnimatedList from '../departments/AnimatedList';
 
 const Archives = () => {
   const [tree, setTree] = useState([]);
@@ -57,17 +58,20 @@ const Archives = () => {
               <Accordion.Item key={course.id} eventKey={course.id}>
                 <Accordion.Header>{course.name}</Accordion.Header>
                 <Accordion.Body>
-                  <ListGroup variant="flush">
-                    {course.children.map((file) => (
-                      <ListGroup.Item key={file.id} className="d-flex justify-content-between align-items-center">
-                        {file.name}
+                  <AnimatedList
+                    items={course.children.map((file) => (
+                      <div key={file.id} className="d-flex justify-content-between align-items-center w-100">
+                        <span>{file.name}</span>
                         <div>
                           <Button variant="outline-primary" size="sm" href={file.webViewLink} target="_blank">View</Button>
                           <Button variant="outline-success" size="sm" href={file.webContentLink} download>Download</Button>
                         </div>
-                      </ListGroup.Item>
+                      </div>
                     ))}
-                  </ListGroup>
+                    showGradients
+                    enableArrowNavigation={false}
+                    displayScrollbar
+                  />
                 </Accordion.Body>
               </Accordion.Item>
             ))}
