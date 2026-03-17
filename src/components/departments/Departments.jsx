@@ -12,8 +12,6 @@ const Departments = () => {
     { name: 'Department of Industrial Engineering', id: 'ie' },
     { name: 'Department of Manufacturing Engineering', id: 'mfe' },
     { name: 'Department of Mechatronics Engineering', id: 'mce' },
-    { name: 'Department of Chemical Engineering', id: 'che' },
-    { name: 'Department of Architecture', id: 'arch' },
   ];
 
   return (

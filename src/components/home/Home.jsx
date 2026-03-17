@@ -10,9 +10,7 @@ const departments = [
   { id: 'ce', name: 'Department of Civil Engineering' },
   { id: 'ie', name: 'Department of Industrial Engineering' },
   { id: 'mfe', name: 'Department of Manufacturing Engineering' },
-  { id: 'mce', name: 'Department of Mechatronics Engineering' },
-  { id: 'che', name: 'Department of Chemical Engineering' },
-  { id: 'arch', name: 'Department of Architecture' }
+  { id: 'mce', name: 'Department of Mechatronics Engineering' }
 ];
 
 const chunkArray = (arr, size) => {

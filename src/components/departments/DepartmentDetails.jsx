@@ -145,12 +145,10 @@ const departmentData = {
         { name: 'Engr. Jerome B. Bagsic', position: 'Part-Time Instructor, Mechatronics Engineering' },
         { name: 'Engr. Juan Martin R. Cruz', position: 'Part-Time Instructor, Mechatronics Engineering' },
         { name: 'Engr. Reggiel Clint L. Valdez', position: 'Part-Time Instructor, Mechatronics Engineering' },
-        { name: 'Engr. Jason D. Lozano', position: 'Part-Time Instructor, Mechatronics Engineering' },
+        { name: 'Engr. Jason D. Loz.ano', position: 'Part-Time Instructor, Mechatronics Engineering' },
         { name: 'Engr. John Darwin P. Quintal', position: 'Part-Time Instructor, Mechatronics Engineering' },
       ]
   },
-  che: { name: 'Department of Chemical Engineering', faculty: [] },
-  arch: { name: 'Department of Architecture', faculty: [] },
 };
 
 const DepartmentDetails = () => {
