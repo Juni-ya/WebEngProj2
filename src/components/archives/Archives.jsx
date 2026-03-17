@@ -1,8 +1,9 @@
 import React, { useState, useEffect } from 'react';
-import { Dropdown, Card, Accordion, Button } from 'react-bootstrap';
+import { Dropdown, Card, Button } from 'react-bootstrap';
 import { getRootTree } from '../../googleDrive';
 import { LoadingIndicator } from '../application/loading-indicator/loading-indicator';
 import AnimatedList from '../departments/AnimatedList';
+import ArchivesAccordion from './ArchivesAccordion';
 
 const Archives = () => {
   const [tree, setTree] = useState([]);
@@ -53,29 +54,28 @@ const Archives = () => {
         </div>
         
         {selectedYearData && (
-          <Accordion>
-            {selectedYearData.children.map((course) => (
-              <Accordion.Item key={course.id} eventKey={course.id}>
-                <Accordion.Header>{course.name}</Accordion.Header>
-                <Accordion.Body>
-                  <AnimatedList
-                    items={course.children.map((file) => (
-                      <div key={file.id} className="d-flex justify-content-between align-items-center w-100">
-                        <span>{file.name}</span>
-                        <div>
-                          <Button variant="outline-primary" size="sm" href={file.webViewLink} target="_blank">View</Button>
-                          <Button variant="outline-success" size="sm" href={file.webContentLink} download>Download</Button>
-                        </div>
+          <ArchivesAccordion
+            items={selectedYearData.children.map((course) => ({
+              id: course.id,
+              header: course.name,
+              content: (
+                <AnimatedList
+                  items={course.children.map((file) => (
+                    <div key={file.id} className="d-flex justify-content-between align-items-center w-100">
+                      <span>{file.name}</span>
+                      <div>
+                        <Button variant="outline-primary" size="sm" href={file.webViewLink} target="_blank">View</Button>
+                        <Button variant="outline-success" size="sm" href={file.webContentLink} download>Download</Button>
                       </div>
-                    ))}
-                    showGradients
-                    enableArrowNavigation={false}
-                    displayScrollbar
-                  />
-                </Accordion.Body>
-              </Accordion.Item>
-            ))}
-          </Accordion>
+                    </div>
+                  ))}
+                  showGradients
+                  enableArrowNavigation={false}
+                  displayScrollbar
+                />
+              ),
+            }))}
+          />
         )}
       </Card.Body>
     </Card>
