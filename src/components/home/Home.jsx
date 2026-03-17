@@ -1,8 +1,9 @@
 import React from 'react';
-import { Container, Row, Col, Card, Carousel, Button } from 'react-bootstrap';
+import { Container, Row, Col, Card } from 'react-bootstrap';
 import { Link } from 'react-router-dom';
 import AnimatedContent from '../common/AnimatedContent';
 import BlurText from '../common/BlurText';
+import DeconstructedCarousel from '../common/DeconstructedCarousel';
 
 const departments = [
   { id: 'cse', name: 'Department of Computer Engineering' },
@@ -108,27 +109,15 @@ const Home = () => {
 
       {/* Department Carousel */}
       <section>
-        <h2 className="text-center mb-4 bulsu-accent">Explore Our Departments</h2>
-        <Carousel>
-          {departmentChunks.map((chunk, index) => (
-            <Carousel.Item key={index}>
-              <Row className="justify-content-center">
-                {chunk.map(dept => (
-                  <Col md={6} lg={4} key={dept.id} className="mb-3">
-                    <Card className="text-center shadow-sm h-100 bulsu-border">
-                      <Card.Body>
-                        <Card.Title>{dept.name}</Card.Title>
-                        <Link to={`/departments/${dept.id}`}>
-                          <Button variant="primary">View Department</Button>
-                        </Link>
-                      </Card.Body>
-                    </Card>
-                  </Col>
-                ))}
-              </Row>
-            </Carousel.Item>
-          ))}
-        </Carousel>
+        <BlurText
+          text="Explore Our Departments"
+          delay={150}
+          animateBy="words"
+          direction="top"
+          className="text-center mb-4 bulsu-accent h2"
+          onAnimationComplete={() => console.log('Departments title animation completed!')}
+        />
+        <DeconstructedCarousel items={departments} />
       </section>
     </Container>
   );
