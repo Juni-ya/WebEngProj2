@@ -82,3 +82,89 @@
   box-shadow: 0 4px 8px rgba(0,0,0,0.1);
   background-color: #e9ecef;
 }
+
+/* Stepper specific styles */
+.step-content {
+  padding: 1rem 0;
+}
+
+.step-content h2 {
+  color: #C8102E !important;
+  font-size: 1.5rem;
+  font-weight: 600;
+  margin-bottom: 1rem;
+}
+
+.step-content p {
+  color: #6b7280;
+  font-size: 1rem;
+  margin-bottom: 1.5rem;
+  line-height: 1.6;
+}
+
+.document-actions {
+  display: flex;
+  flex-direction: column;
+  gap: 0.5rem;
+  align-items: center;
+}
+
+.document-actions .btn {
+  min-width: 200px;
+}
+
+.completion-message {
+  animation: fadeIn 0.5s ease-in;
+}
+
+.completion-message h2 {
+  color: #C8102E;
+  font-size: 2rem;
+  font-weight: 700;
+}
+
+.completion-checklist {
+  background: #f8f9fa;
+  padding: 1.5rem;
+  border-radius: 8px;
+  border-left: 4px solid #FFD700;
+  margin-top: 1rem;
+}
+
+.completion-checklist h4 {
+  color: #C8102E;
+  margin-bottom: 1rem;
+  font-weight: 600;
+}
+
+.completion-checklist li {
+  padding: 0.25rem 0;
+  color: #495057;
+}
+
+@keyframes fadeIn {
+  from {
+    opacity: 0;
+    transform: translateY(20px);
+  }
+  to {
+    opacity: 1;
+    transform: translateY(0);
+  }
+}
+
+/* Responsive adjustments */
+@media (max-width: 768px) {
+  .document-actions {
+    flex-direction: column;
+  }
+
+  .document-actions .btn {
+    width: 100%;
+    min-width: auto;
+  }
+
+  .completion-checklist {
+    padding: 1rem;
+  }
+}

@@ -31,7 +31,14 @@ const Archives = () => {
 
   const selectedYearData = tree.find(year => year.name === selectedYear);
 
-  if (loading) return <LoadingIndicator type="line-simple" size="md" />;
+  if (loading) return (
+    <Card className="shadow-sm bulsu-border">
+      <Card.Body className="text-center py-5">
+        <LoadingIndicator type="spinner" size="lg" />
+        <p className="mt-3 text-muted">Loading archives...</p>
+      </Card.Body>
+    </Card>
+  );
   if (error) return <div>{error}</div>;
 
   return (
