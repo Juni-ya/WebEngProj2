@@ -1,6 +1,7 @@
 import React from 'react';
 import { useParams, Link } from 'react-router-dom';
-import { Card, Breadcrumb, Row, Col, ListGroup } from 'react-bootstrap';
+import { Card, Breadcrumb, Row, Col } from 'react-bootstrap';
+import AnimatedList from './AnimatedList';
 
 const departmentData = {
   ce: {
@@ -157,6 +158,10 @@ const DepartmentDetails = () => {
   let { id } = useParams();
   const department = departmentData[id] || { name: 'Unknown Department' };
 
+  const items = department.faculty && department.faculty.length > 0 
+    ? department.faculty.map(member => `${member.name} - ${member.position}`)
+    : ['No faculty information available.'];
+
   return (
     <>
       <Breadcrumb>
@@ -170,17 +175,12 @@ const DepartmentDetails = () => {
           <Row>
             <Col>
               <Card.Title>Faculty Members</Card.Title>
-              <ListGroup>
-                {department.faculty && department.faculty.length > 0 ? (
-                  department.faculty.map((member, index) => (
-                    <ListGroup.Item key={index}>
-                      <strong>{member.name}</strong> - {member.position}
-                    </ListGroup.Item>
-                  ))
-                ) : (
-                  <ListGroup.Item>No faculty information available.</ListGroup.Item>
-                )}
-              </ListGroup>
+              <AnimatedList
+                items={items}
+                showGradients
+                enableArrowNavigation
+                displayScrollbar
+              />
             </Col>
           </Row>
         </Card.Body>

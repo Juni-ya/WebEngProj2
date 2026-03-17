@@ -1,8 +1,10 @@
 import React from 'react';
-import { Link } from 'react-router-dom';
-import { ListGroup, Card } from 'react-bootstrap';
+import { useNavigate } from 'react-router-dom';
+import { Card } from 'react-bootstrap';
+import AnimatedList from './AnimatedList';
 
 const Departments = () => {
+  const navigate = useNavigate();
   const departmentList = [
     { name: 'Department of Computer Engineering', id: 'cse' },
     { name: 'Department of Electronics Engineering', id: 'ece' },
@@ -16,17 +18,23 @@ const Departments = () => {
     { name: 'Department of Architecture', id: 'arch' },
   ];
 
+  const items = departmentList.map(dept => dept.name);
+
+  const handleItemSelect = (item, index) => {
+    navigate(`/departments/${departmentList[index].id}`);
+  };
+
   return (
     <Card className="shadow-sm bulsu-border">
       <Card.Header as="h2" className="text-center">Academic Departments</Card.Header>
       <Card.Body>
-        <ListGroup variant="flush">
-          {departmentList.map((dept) => (
-            <ListGroup.Item key={dept.id} action as={Link} to={`/departments/${dept.id}`} className="p-3">
-              {dept.name}
-            </ListGroup.Item>
-          ))}
-        </ListGroup>
+        <AnimatedList
+          items={items}
+          onItemSelect={handleItemSelect}
+          showGradients
+          enableArrowNavigation
+          displayScrollbar
+        />
       </Card.Body>
     </Card>
   );

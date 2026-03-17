@@ -1,6 +1,7 @@
 import React, { useState, useEffect } from 'react';
 import { Dropdown, Card, ListGroup, Accordion, Button } from 'react-bootstrap';
 import { getRootTree } from '../../googleDrive';
+import { LoadingIndicator } from '../application/loading-indicator/loading-indicator';
 
 const Archives = () => {
   const [tree, setTree] = useState([]);
@@ -28,7 +29,7 @@ const Archives = () => {
 
   const selectedYearData = tree.find(year => year.name === selectedYear);
 
-  if (loading) return <div>Loading...</div>;
+  if (loading) return <LoadingIndicator type="line-simple" size="md" />;
   if (error) return <div>{error}</div>;
 
   return (
