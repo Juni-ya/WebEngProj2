@@ -1,13 +1,14 @@
 import React from 'react';
 import { useParams, Link } from 'react-router-dom';
 import { Card, Breadcrumb, Row, Col } from 'react-bootstrap';
-import AnimatedList from './AnimatedList';
+import TeamMemberSection from './TeamMemberSection';
+import { image } from 'framer-motion/client';
 
 const departmentData = {
   ce: {
     name: 'Department of Civil Engineering',
     faculty: [
-      { name: 'Engr. Radger Teddy Manuel', position: 'Program Chair, Civil Engineering' },
+      { name: 'Engr. Radger Teddy Manuel', position: 'Program Chair, Civil Engineering', },
       { name: 'Engr. Romualdo Caluag', position: 'Faculty, Civil Engineering' },
       { name: 'Engr. Joyce Evangelista', position: 'Faculty, Civil Engineering' },
       { name: 'Engr. Sarah Faustino', position: 'Faculty, Civil Engineering' },
@@ -26,19 +27,19 @@ const departmentData = {
   cse: {
     name: 'Department of Computer Engineering',
     faculty: [
-        { name: 'Engr. Alexander M. Aquino', position: 'Faculty, Computer Engineering' },
-        { name: 'Dr. Lech Walesa M. Navarra', position: 'Faculty, Computer Engineering' },
-        { name: 'Engr. Maria Lorena SP. Villena', position: 'Faculty, Computer Engineering' },
-        { name: 'Engr. Bernard G. Yasay', position: 'Faculty, Computer Engineering' },
+        { name: 'Engr. Alexander M. Aquino', position: 'Faculty, Computer Engineering', imageUrl: 'https://scontent.fmnl33-6.fna.fbcdn.net/v/t39.30808-6/432001437_7818125638232002_5562765456735340087_n.jpg?_nc_cat=109&ccb=1-7&_nc_sid=1d70fc&_nc_eui2=AeHx5IBl2lDFQVjCj9lQ1JBJpsKTRh6ZHbWmwpNGHpkdtUYwN_O2x72GwVYJ6i3lh1vfg21q6IeKl_hGPtyh-ebf&_nc_ohc=5bAM7fll7PgQ7kNvwGWjd6v&_nc_oc=Adrk190VNuwf8fiUQYf5_AlqwdeXe-bpxgXkLM4h2RKhubV_EiLI7IM7pJ9mJLvX7IU&_nc_zt=23&_nc_ht=scontent.fmnl33-6.fna&_nc_gid=18TnosGx-p3wJ7bS_G0x5A&_nc_ss=8&oh=00_Afz9yeWL77vpc3Kxfpna9YBrUUIaLcEViQOFdPgqXKEhpA&oe=69C1B336' },
+        { name: 'Dr. Lech Walesa M. Navarra', position: 'Faculty, Computer Engineering', imageUrl: 'https://tse2.mm.bing.net/th/id/OIP.988VN0zeTzZi_adocVOzlgHaF9?rs=1&pid=ImgDetMain&o=7&rm=3' },
+        { name: 'Engr. Maria Lorena SP. Villena', position: 'Faculty, Computer Engineering', imageUrl: 'https://scontent.fmnl33-6.fna.fbcdn.net/v/t39.30808-6/518273578_10161964891223089_1387706342810050150_n.jpg?stp=cp6_dst-jpg_tt6&_nc_cat=109&ccb=1-7&_nc_sid=53a332&_nc_eui2=AeH_CznqgIzo6NSaSFgi2d4aN6swz8I1lGg3qzDPwjWUaIahXUQbrhWogO75Vp7GRqbwUw-mZobKJutHJ0YTs_6S&_nc_ohc=POoOU7YD0QQQ7kNvwGGZKCZ&_nc_oc=Adorc_O5zDdFe4hpC8OJti5XgUFr6R4XLq5JTTx-fV0jgSaRpTMghR4_sBa6J2-ZsV8&_nc_zt=23&_nc_ht=scontent.fmnl33-6.fna&_nc_gid=y2HgmSkGMMsGbg7iMfFa5Q&_nc_ss=8&oh=00_AfxPe79Q5yGQ0CUt71DKP9arnwpwMKTkcHmtTRoL0I7_VQ&oe=69C1B22E' },
+        { name: 'Engr. Bernard G. Yasay', position: 'Faculty, Computer Engineering', imageUrl: 'https://scontent.fmnl33-1.fna.fbcdn.net/v/t1.6435-9/106900367_3221451041208387_3429629015504058937_n.jpg?_nc_cat=108&ccb=1-7&_nc_sid=53a332&_nc_eui2=AeHreREWUcg8CPpc2n9233ICUfmKCdhOHdBR-YoJ2E4d0KSl8ElThT2JSc_VTm50pCgh_0yiIvG4L2tQe8PWMNtJ&_nc_ohc=fXIcYaqW8SMQ7kNvwGCRzl3&_nc_oc=Adq5bHDK4BtlzTbCuMmFoKpqegF27CIc5jldw9KN1bReK2YYQtnjPMsx5pdN9scJblg&_nc_zt=23&_nc_ht=scontent.fmnl33-1.fna&_nc_gid=-utV-ZYSdd5EjaqCPsmPtA&_nc_ss=8&oh=00_Afz9HP5j32iMFG_wOgv-ZTjBrgkx38L5dnFAh-tGMOFYlg&oe=69E35517'},
         { name: 'Engr. Catherine V. Dela Cruz', position: 'Faculty, Computer Engineering' },
         { name: 'Engr. Richard Y. Dela Cruz', position: 'Faculty, Computer Engineering' },
-        { name: 'Dr. Ma. Magdalena V. Gatdula', position: 'Faculty, Computer Engineering' },
-        { name: 'Dr. Monaliza S. Jimenez', position: 'Faculty, Computer Engineering' },
+        { name: 'Dr. Ma. Magdalena V. Gatdula', position: 'Faculty, Computer Engineering'},
+        { name: 'Dr. Monaliza S. Jimenez', position: 'Faculty, Computer Engineering', imageUrl: 'https://scontent.fmnl33-6.fna.fbcdn.net/v/t39.30808-6/506539339_10232965089962514_5933195125117214841_n.jpg?_nc_cat=107&ccb=1-7&_nc_sid=53a332&_nc_eui2=AeGMJztwon0WiLBUYCxRDu5yXNjtmgBjaRVc2O2aAGNpFdLp4QIeSmaW7ha8sJ7ntHdk-RQRxUt0HpHjRNvLHPT8&_nc_ohc=dqJMXyHzPQAQ7kNvwHkOMn_&_nc_oc=AdpVi-j_E6K9dzSQmJVAaNbR1hiUVfhrlbgHZZ6p9xAQHx493UvVv0yHPMNUxuMYxpU&_nc_zt=23&_nc_ht=scontent.fmnl33-6.fna&_nc_gid=-ce7GL_ZmrPltW5dkLRroQ&_nc_ss=8&oh=00_AfwFHfTOqAIncovNdPDQWEqd_8r6WCH6yYP5s0KeyjhK_g&oe=69C19ECC' },
         { name: 'Engr. Julius Vincent M. Abanel', position: 'Part-Time Instructor, Computer Engineering' },
         { name: 'Engr. Hiroyoshi  DG. Arai', position: 'Part-Time Instructor, Computer Engineering' },
         { name: 'Engr. Robert Justin S. Chavez', position: 'Part-Time Instructor, Computer Engineering' },
         { name: 'Engr. Albert C. Cruz Jr.', position: 'Part-Time Instructor, Computer Engineering' },
-        { name: 'Engr. Maria Ana G. Dangan', position: 'Guest Lecturer, Computer Engineering' },
+        { name: 'Engr. Maria Ana G. Dangan', position: 'Guest Lecturer, Computer Engineering' },  
         { name: 'Engr. Sheila May M. Liwag', position: 'Guest Lecturer, Computer Engineering' },
     ],
   },
@@ -158,9 +159,15 @@ const DepartmentDetails = () => {
   let { id } = useParams();
   const department = departmentData[id] || { name: 'Unknown Department' };
 
-  const items = department.faculty && department.faculty.length > 0 
-    ? department.faculty.map(member => `${member.name} - ${member.position}`)
-    : ['No faculty information available.'];
+
+  // Map faculty to TeamMemberSection expected props
+  const members = (department.faculty && department.faculty.length > 0)
+    ? department.faculty.map(member => ({
+        name: member.name,
+        role: member.position,
+        imageUrl: member.imageUrl || '', // Add imageUrl if available
+      }))
+    : [];
 
   return (
     <>
@@ -175,12 +182,15 @@ const DepartmentDetails = () => {
           <Row>
             <Col>
               <Card.Title>Faculty Members</Card.Title>
-              <AnimatedList
-                items={items}
-                showGradients
-                enableArrowNavigation
-                displayScrollbar
-              />
+              {members.length > 0 ? (
+                <TeamMemberSection
+                  members={members}
+                  title="Faculty"
+                  subtitle="Our Faculty Team"
+                />
+              ) : (
+                <div>No faculty information available.</div>
+              )}
             </Col>
           </Row>
         </Card.Body>
