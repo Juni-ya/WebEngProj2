@@ -4,6 +4,7 @@ import { Link } from 'react-router-dom';
 import AnimatedContent from '../common/AnimatedContent';
 import BlurText from '../common/BlurText';
 import DeconstructedCarousel from '../common/DeconstructedCarousel';
+import TiltedCard from '../departments/TiltedCard';
 
 const departments = [
   { id: 'cse', name: 'Department of Computer Engineering' },
@@ -43,66 +44,54 @@ const Home = () => {
         />
         <Row className="justify-content-center mb-4">
           <Col md={6} lg={4}>
-            <AnimatedContent
-              distance={100}
-              direction="vertical"
-              reverse={true}
-              duration={0.8}
-              ease="power3.out"
-              initialOpacity={0}
-              animateOpacity
-              scale={0.8}
-              threshold={0.1}
-              delay={0}
-            >
-              <Card className="text-center shadow-lg mb-3 bulsu-border">
-                <Card.Body>
-                  <Card.Title>Dean of the College</Card.Title>
-                </Card.Body>
-              </Card>
-            </AnimatedContent>
+            <TiltedCard
+              imageSrc={'/src/assets/placeholder.png'}
+              altText="Dean of the College"
+              captionText="Dean of the College"
+              containerHeight="300px"
+              imageHeight="300px"
+              imageWidth="100%"
+              scaleOnHover={1.08}
+              rotateAmplitude={12}
+              showMobileWarning={false}
+              showTooltip={true}
+              overlayContent={<div style={{fontWeight:'bold',fontSize:'1.2em',color:'#fff',textShadow:'0 2px 8px #000'}}>Dean of the College</div>}
+              displayOverlayContent={true}
+            />
           </Col>
         </Row>
         <Row className="justify-content-center">
           <Col md={4} lg={3}>
-            <AnimatedContent
-              distance={100}
-              direction="horizontal"
-              reverse={true}
-              duration={0.8}
-              ease="power3.out"
-              initialOpacity={0}
-              animateOpacity
-              scale={0.8}
-              threshold={0.1}
-              delay={0.2}
-            >
-              <Card className="text-center shadow-sm mb-3 bulsu-border">
-                <Card.Body>
-                  <Card.Title>Associate Dean</Card.Title>
-                </Card.Body>
-              </Card>
-            </AnimatedContent>
+            <TiltedCard
+              imageSrc={'/src/assets/placeholder.png'}
+              altText="Associate Dean"
+              captionText="Associate Dean"
+              containerHeight="300px"
+              imageHeight="300px"
+              imageWidth="100%"
+              scaleOnHover={1.08}
+              rotateAmplitude={12}
+              showMobileWarning={false}
+              showTooltip={true}
+              overlayContent={<div style={{fontWeight:'bold',fontSize:'1.2em',color:'#fff',textShadow:'0 2px 8px #000'}}>Associate Dean</div>}
+              displayOverlayContent={true}
+            />
           </Col>
           <Col md={4} lg={3}>
-            <AnimatedContent
-              distance={100}
-              direction="horizontal"
-              reverse={false}
-              duration={0.8}
-              ease="power3.out"
-              initialOpacity={0}
-              animateOpacity
-              scale={0.8}
-              threshold={0.1}
-              delay={0.4}
-            >
-              <Card className="text-center shadow-sm mb-3 bulsu-border">
-                <Card.Body>
-                  <Card.Title>College Secretary</Card.Title>
-                </Card.Body>
-              </Card>
-            </AnimatedContent>
+            <TiltedCard
+              imageSrc={'/src/assets/placeholder.png'}
+              altText="College Secretary"
+              captionText="College Secretary"
+              containerHeight="300px"
+              imageHeight="300px"
+              imageWidth="100%"
+              scaleOnHover={1.08}
+              rotateAmplitude={12}
+              showMobileWarning={false}
+              showTooltip={true}
+              overlayContent={<div style={{fontWeight:'bold',fontSize:'1.2em',color:'#fff',textShadow:'0 2px 8px #000'}}>College Secretary</div>}
+              displayOverlayContent={true}
+            />
           </Col>
         </Row>
       </section>
