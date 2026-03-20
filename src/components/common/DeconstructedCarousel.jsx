@@ -104,15 +104,19 @@ const DeconstructedCarousel = ({ items }) => {
     });
 
     function goToCard(index) {
-      index = Math.max(0, Math.min(index, cards.length - 1));
+      if (index < 0) {
+        index = cards.length - 1;
+      } else if (index >= cards.length) {
+        index = 0;
+      }
 
       currentIndex = index;
       updateCarousel();
     }
 
     function updateCarousel() {
-      const translateX = -currentIndex * totalCardWidth;
-
+      const containerWidth = track.parentElement.offsetWidth;
+      const translateX = (containerWidth / 2) - (totalCardWidth / 2) - (currentIndex * totalCardWidth);
       track.style.transform = `translateX(${translateX}px)`;
 
       dots.forEach((dot, index) => {
@@ -159,8 +163,9 @@ const DeconstructedCarousel = ({ items }) => {
     window.addEventListener("resize", () => {
       const newCardWidth = cards[0].offsetWidth;
       const newTotalCardWidth = newCardWidth + cardMargin;
+      const containerWidth = track.parentElement.offsetWidth;
 
-      const translateX = -currentIndex * newTotalCardWidth;
+      const translateX = (containerWidth / 2) - (newTotalCardWidth / 2) - (currentIndex * newTotalCardWidth);
       track.style.transition = "none";
       track.style.transform = `translateX(${translateX}px)`;
 

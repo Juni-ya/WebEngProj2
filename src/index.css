@@ -7,7 +7,6 @@
 
   color-scheme: light;
   color: #213547;
-  background-color: #f8f9fa;
 
   font-synthesis: none;
   text-rendering: optimizeLegibility;
@@ -27,14 +26,32 @@ body {
   display: flex;
   flex-direction: column;
   min-height: 100vh;
-  background-color: var(--bulsu-white);
   color: var(--bulsu-blue);
+  background-image: url('/src/assets/elib.jpeg');
+  background-size: cover;
+  background-position: center;
+  background-attachment: fixed;
+  position: relative;
+}
+
+body::before {
+  content: '';
+  position: absolute;
+  top: 0;
+  left: 0;
+  right: 0;
+  bottom: 0;
+  background: inherit;
+  backdrop-filter: blur(100px) brightness(1);
+  z-index: -1;
 }
 
 #root {
   display: flex;
   flex-direction: column;
   flex-grow: 1;
+  background-color: rgba(245, 182, 182, 0.911); /* Make content background slightly transparent */
+  z-index: 1;
 }
 
 a {

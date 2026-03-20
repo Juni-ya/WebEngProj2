@@ -145,7 +145,5 @@ export const departmentData = {
           { name: 'Engr. John Darwin P. Quintal', position: 'Part-Time Instructor, Mechatronics Engineering' },
         ]
     },
-    che: { name: 'Department of Chemical Engineering', faculty: [] },
-    arch: { name: 'Department of Architecture', faculty: [] },
   };
   

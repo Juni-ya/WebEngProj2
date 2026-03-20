@@ -7,16 +7,14 @@ import DeconstructedCarousel from '../common/DeconstructedCarousel';
 import TiltedCard from '../departments/TiltedCard';
 
 const departments = [
-  { id: 'cse', name: 'Department of Computer Engineering' },
-  { id: 'ece', name: 'Department of Electronics Engineering' },
-  { id: 'eee', name: 'Department of Electrical Engineering' },
-  { id: 'me', name: 'Department of Mechanical Engineering' },
   { id: 'ce', name: 'Department of Civil Engineering' },
+  { id: 'cse', name: 'Department of Computer Engineering' },
+  { id: 'eee', name: 'Department of Electrical Engineering' },
+  { id: 'ece', name: 'Department of Electronics Engineering' },
   { id: 'ie', name: 'Department of Industrial Engineering' },
   { id: 'mfe', name: 'Department of Manufacturing Engineering' },
+  { id: 'me', name: 'Department of Mechanical Engineering' },
   { id: 'mce', name: 'Department of Mechatronics Engineering' },
-  { id: 'che', name: 'Department of Chemical Engineering' },
-  { id: 'arch', name: 'Department of Architecture' }
 ];
 
 const chunkArray = (arr, size) => {

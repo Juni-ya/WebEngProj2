@@ -21,7 +21,8 @@ export default function TiltedCard({
   showMobileWarning = true,
   showTooltip = true,
   overlayContent = null,
-  displayOverlayContent = false
+  displayOverlayContent = false,
+  onClick = null
 }) {
   const ref = useRef(null);
 
@@ -79,11 +80,13 @@ export default function TiltedCard({
       className="tilted-card-figure"
       style={{
         height: containerHeight,
-        width: containerWidth
+        width: containerWidth,
+        cursor: onClick ? 'pointer' : 'default'
       }}
       onMouseMove={handleMouse}
       onMouseEnter={handleMouseEnter}
       onMouseLeave={handleMouseLeave}
+      onClick={onClick}
     >
       {showMobileWarning && (
         <div className="tilted-card-mobile-alert">This effect is not optimized for mobile. Check on desktop.</div>

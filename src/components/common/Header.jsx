@@ -2,19 +2,20 @@ import React from 'react';
 import { Link, NavLink } from 'react-router-dom';
 import { Navbar, Nav } from 'react-bootstrap';
 import './Header.css';
+import bulsuLogo from '../../assets/bulsu_logo.webp';
 
 const Header = () => {
   return (
     <Navbar expand="lg" className="shadow-sm bulsu-header modern-navbar">
       <Navbar.Brand as={Link} to="/" className="d-flex align-items-center animated-brand">
         <img
-          src="https://via.placeholder.com/30"
+          src={bulsuLogo}
           width="30"
           height="30"
           className="d-inline-block align-top me-2 animated-logo"
           alt="BulSU Logo"
         />
-        <span className="fw-bold animated-text">BulSU COE</span>
+        <span className="fw-bold animated-text">BulSU COE Research and Extension Portal</span>
       </Navbar.Brand>
       <Navbar.Toggle aria-controls="basic-navbar-nav" className="animated-toggle" />
       <Navbar.Collapse id="basic-navbar-nav" className="animated-collapse">
