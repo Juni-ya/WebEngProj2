@@ -1,7 +1,9 @@
 import React, { useState } from 'react';
 import { Card, Button } from 'react-bootstrap';
 import Stepper, { Step } from './Stepper';
+import MagicBento from './MagicBento';
 import './Flowchart.css';
+import './MagicBento.css';
 
 const DocumentFlowchart = () => {
   const [completed, setCompleted] = useState(false);
@@ -44,6 +46,21 @@ const DocumentFlowchart = () => {
 
   return (
     <div className="flowchart-container">
+      <div style={{ marginBottom: '2rem' }}>
+        <MagicBento 
+          textAutoHide={true}
+          enableStars
+          enableSpotlight
+          enableBorderGlow={true}
+          enableTilt={false}
+          enableMagnetism={false}
+          clickEffect
+          spotlightRadius={400}
+          particleCount={12}
+          glowColor="200, 16, 46" // BulSU Red
+          disableAnimations={false}
+        />
+      </div>
       <Card className="shadow-sm bulsu-border">
         <Card.Header as="h2" className="text-center">Memorandum of Agreement Process</Card.Header>
         <Card.Body>
